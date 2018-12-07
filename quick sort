@@ -1,0 +1,260 @@
+#include<iostream>
+using namespace std;
+
+
+void merge_sort(int arr[], int left, int right);
+void merge(int arr[], int left, int mid, int right);
+
+void quick_sort(int arr[], int left, int right);
+int partition(int list[], int left, int right);
+
+int N;
+
+int main()
+{
+	cin >> N;
+
+	int * arr = new int[N];
+	for (int i = 0; i < N; i++)
+	{
+		cin >> arr[i];
+	}
+
+	// 버블
+	/*
+
+	// 버블정렬
+	{
+		int temp = 0;
+
+		for (int i = 0; i < N; i++)
+		{
+			for (int j = 0; j < N - 1 - i; j++)
+			{
+				if (arr[j] > arr[j + 1]) // 뒷 수가 크면
+				{
+					//temp = arr[j];
+					//arr[j] = arr[j + 1];
+					//arr[j + 1] = temp;
+					swap(arr[i], arr[j + 1]);
+				}
+			}
+		}
+
+
+
+		for (int i = 0; i<N; i++)
+		{
+		printf("%d\n", arr[i]);
+		}
+
+	}
+	*/
+	
+	// 삽입
+	/*
+	// 삽입정렬
+	{
+		int temp = 0;
+
+		for (int i = 0; i < N; i++)
+		{
+			for (int j = 0; j < i; j++)
+			{
+
+				if (arr[i] < arr[j]) // 선택된 수가 j보다 작으면
+				{
+					swap(arr[i], arr[j]);
+				}
+				else break;
+			}
+		}
+
+
+
+
+		for (int i = 0; i<N; i++)
+		{
+		printf("%d\n", arr[i]);
+		}
+
+	}
+	*/
+
+	// 선택
+	/*
+	
+	// 선택정렬
+	{
+		int temp = 0;
+
+		for (int i = 0; i < N - 1; i++)
+		{
+
+			for (int j = i + 1; j < N; j++)
+			{
+				if (arr[i] > arr[j])
+					swap(arr[i], arr[j]);
+			}
+
+
+		}
+
+		for (int i = 0; i<N; i++)
+		{
+			printf("%d\n", arr[i]);
+		}
+
+	}
+
+	*/
+
+	// 합병
+	/*
+	// 합병정렬
+	{
+
+		merge_sort(arr, 0, N - 1); // 나누는 과정
+
+		for (int i = 0; i<N; i++)
+		{
+			printf("%d\n", arr[i]);
+		}
+
+
+	}
+	*/
+
+	// 퀵
+	{
+		
+		quick_sort(arr, 0, N - 1); // 나누는 과정
+
+		for (int i = 0; i<N; i++)
+		{
+			printf("%d\n", arr[i]);
+		}
+
+
+
+	}
+
+
+	delete[]arr;
+
+	//system("pause");
+
+	return 0;
+}
+
+void merge_sort(int arr[], int left, int right)
+{
+	int mid;
+
+	if (left < right)
+	{
+		mid = (left + right) / 2;
+
+		merge_sort(arr, left, mid);
+		merge_sort(arr, mid + 1, right);
+
+		merge(arr, left, mid, right);
+	}
+
+}
+
+void merge(int arr[], int left, int mid, int right)
+{
+	int i = left;
+	int j = mid + 1;
+	int k = left;
+	int l;
+
+
+	int * sorted = new int[N];
+
+	while (i <= mid && j <= right) // 분할정렬된 리스트 합병
+	{
+		if (arr[i] <= arr[j]) // 만약 왼쪽이 오른쪽보다 작다면
+			sorted[k++] = arr[i++]; // 왼쪽것을 먼저 리스트에 작성, 그리고 i와 j,k 를 1씩 올림
+		else
+			sorted[k++] = arr[j++];
+
+	}
+	// 여기까지 새로운 리스트로 만들었음.
+
+
+
+
+	// 남아 있는 값들을 일괄 복사 ( 예전에 이미 계산해 놓았던 것들)
+	if (i>mid) 
+	{
+		for (l = j; l <= right; l++)
+			sorted[k++] = arr[l];
+	}
+	else 
+	{
+		for (l = i; l <= mid; l++)
+			sorted[k++] = arr[l];
+	}
+
+
+	// 다시 입력
+	for (l = left; l <= right; l++) 
+	{
+		arr[l] = sorted[l];
+	}
+
+	
+
+	delete[]sorted;
+}
+
+void quick_sort(int arr[], int left, int right)
+{
+
+
+	if (left < right)
+	{
+		int q = partition(arr, left, right);
+
+		merge_sort(arr, left, q - 1);
+		merge_sort(arr, q + 1, right);
+
+	}
+}
+
+int partition(int list[], int left, int right)
+{
+	int pivot;
+	int low, high;
+
+	low = left;
+	high = right + 1;
+	pivot = list[left]; // 정렬할 리스트의 가장 왼쪽 데이터를 피벗으로 선택(임의의 값을 피벗으로 선택)
+
+						/* low와 high가 교차할 때까지 반복(low<high) */
+	do {
+		/* list[low]가 피벗보다 작으면 계속 low를 증가 */
+		do {
+			low++; // low는 left+1 에서 시작
+		} while (low <= right && list[low]<pivot);
+
+		/* list[high]가 피벗보다 크면 계속 high를 감소 */
+		do {
+			high--; //high는 right 에서 시작
+		} while (high >= left && list[high]>pivot);
+
+		// 만약 low와 high가 교차하지 않았으면 list[low]를 list[high] 교환
+		if (low<high) {
+			swap(list[low], list[high]);
+		}
+	} while (low<high);
+
+	// low와 high가 교차했으면 반복문을 빠져나와 list[left]와 list[high]를 교환
+	swap(list[left], list[high]);
+
+	// 피벗의 위치인 high를 반환
+	return high;
+
+}
