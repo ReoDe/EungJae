@@ -1,0 +1,54 @@
+#include<iostream>
+using namespace std;
+
+#define MaxValue 246912
+
+int main()
+{
+    bool* arr = new bool[MaxValue + 1];
+    int* Number = new int[MaxValue + 1];
+    
+
+    for (int i = 0 ; i < MaxValue + 1; i++)
+    {
+        arr[i] = true; // true 초기화
+        Number[i] = 0;
+    }
+    
+    arr[0] = false; // 1은 false 
+    arr[1] = false; // 1은 false 
+    
+  
+    for (int i = 2; i * i < MaxValue + 1; i++)
+    {
+       if (arr[i])
+	    for (int j = i * i; j < MaxValue + 1; j += i)
+			arr[j] = false;
+    }
+    
+    for ( int i = 2; i <= MaxValue; i++)
+    {
+        Number[i] = Number[i - 1];
+        
+        if (arr[i])
+            Number[i]++;
+    }
+
+     while(1)
+     {
+         int N;
+         cin >> N;
+         
+         if (N == 0) break;
+
+        cout << Number[2*N] - Number[N]<< endl;
+
+     }
+    
+	
+    delete[]Number;
+    delete[]arr;
+    
+	return 0;
+  
+}
