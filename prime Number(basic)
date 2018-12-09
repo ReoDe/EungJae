@@ -1,0 +1,49 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int N;
+	cin >> N;
+
+	int* arr = new int[N];
+    int result = 0;
+    
+    for (int i = 0 ; i < N; i++)
+    {
+        cin >> arr[i];
+    }
+    
+    for (int i = 0 ; i < N; i++)
+    {
+        int temp = arr[i]; // temp가 1이면 기본수
+        
+        if (temp == 1)
+            continue;
+        if (temp == 2)
+        {
+            result += 1;
+            continue;
+                      
+        }
+      
+            
+        for (int j = 2; j < temp ; j++) // temp 2 이상부터 소수검색
+        {
+            if (temp == j + 1)
+                result += 1;
+            
+            if (temp % j == 0) // temp 전까지 나눔, 그래서 0이 되면 소수가 아님
+                break;
+        }
+    }
+    
+    cout << result << endl;
+    
+	//system("pause");
+
+	delete[]arr;
+
+    
+	return 0;
+}
