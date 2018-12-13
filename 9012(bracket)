@@ -1,0 +1,70 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main()
+{
+	int T;
+	cin >> T;
+	int num1 = 0;
+	int num2 = 0;
+	int num_check = 0;
+	bool isYES = true;
+	string input;
+
+	while (T--)
+	{
+		cin >> input;
+
+	
+		for (int i = input.size() - 1; i >=0; i--)
+		{
+			if (input.at(i) == '(')
+			{
+				num1 += 1;
+			}
+			else
+			{
+				num2 += 1;
+			}
+		}
+		// 두 괄호의 갯수가 같는지 확인
+		if (num1 != num2)
+		{
+			isYES = false;
+		}
+		else // 같다면 
+		{
+			for (int i = input.size() - 1; i >= 0; i--)
+			{
+				if (input.at(i) == '(')
+				{
+					num_check += -1;
+				}
+				else
+				{
+					num_check += 1;
+				}
+				//cout << num_check << endl;
+				if (num_check == -1)
+				{
+					isYES = false;
+				}
+			}// 이 체크도 통과하면
+		}
+		if (isYES)cout << "YES" << endl;
+		else cout << "NO" << endl;
+
+		//system("pause");
+
+		num1 = 0;
+		num2 = 0;
+		isYES = true;
+		num_check = 0;
+	}
+
+	
+
+	return 0;
+}
