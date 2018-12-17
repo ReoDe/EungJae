@@ -1,0 +1,203 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+/*
+그래프 : Vertex 와 Edge의 집합 (V, E)
+
+정점과 간선은 위치이고 항목을 저장한다.
+
+1. 방향 간선
+
+- 순서가 정해진 정점의 쌍(u,v)
+- 첫 번째 정점 u가 출발점.
+- 두 번째 정점 v가 도착점.
+ 예) 일방통행도로
+
+ 2. 무방향 간선
+- 순서가 정해지지 않은 정점의 쌍(u,v)
+ 예) 기차의 선로
+
+3. 방향 그래프
+- 모든간선이 방향간선일 때
+ 예) 네트워크 라우트
+
+4. 무방향 그래프
+- 모든 간선들이 무방향일 때
+ 예) 항공 노선도
+
+======================================
+
+- 어떤 간선이 두 정점을 이으면 그 정점들은 서로에게 인접한다고 하고,
+ 그 간선은 두 정점에 부속되었다고 한다.
+
+- 사이클이 없는 그래프는 트리라고 한다. 트리는 사이클이 없는 연결된 그래프이다.
+
+- 자기루프는 정점 자신을 연결하는 간선이다.
+
+- 두 간선은 그들이 같은 정점 쌍을 연결하면 병렬이라고 한다.
+
+- 정점의 차수는 그 점에 부속된 간선의 개수이다.
+
+- 부속 그래프는 그래프의 간선들(그리고 거기에 연결된 정점들)의 부속집합으로 이루어진 그래프이다.
+
+- 경로는 인접한 정점들의 순열이다. 단순경로는 반복되는 정점이 없는 경로이다.
+... 책 보자
+
+=======================================
+
+그래프의 표현
+
+1. 인접 행렬
+2. 인접 리스트
+3. 인접집합
+
+
+*/
+
+// 인접 행렬
+struct Graph
+{
+	int V;
+	int E;
+	int **Adj; // 이차원 행렬
+};
+
+/*
+크기는 V x V 행렬. 행렬의 값은 불린(boolean)
+행렬이 Adj. 정점 u로부터 v까지 간선이 있을때 Adj[u,v]의 값은 1이고 아니면 0.
+
+행렬에서 무방향그래프의 간선은 2비트 표현(즉 u -> v, v -> u 두번 저장됨)
+
+ex)
+A -> B, D
+B -> C
+C -> A, D
+D -> 
+
+이것을 행렬로 표현하면
+
+0 1 0 1
+0 0 1 0
+1 0 0 1
+0 0 0 0
+
+이다.
+
+*/
+
+struct Graph *adjMatrixOfGraph()
+{
+	int i, u, v;
+	struct Graph *G = new Graph(); // 그래프 만들고
+	
+	if (!G)
+	{
+		cout << "Memory Error" << endl;
+		return;
+	}
+
+	cout << "Number of Vertices :";
+	cin >> G->V;
+	cout << endl;
+
+	cout << "Number of Egde : ";
+	cin >> G->E;
+	cout << endl;
+
+	G->Adj = new int*[G->V * G->V]; // V x V 행렬
+	for (u = 0; u < G->V; u++)
+	{
+		for (v = 0; v < G->V; v++)
+		{
+			G->Adj[v][v] = 0;
+		}
+	}
+
+	for (int i = 0; i < G->E; i++) // 엣지 표기
+	{
+		cout << "Reading Edge : ";
+		cin >> u, v;
+		G->Adj[u][v] = 1;
+		G->Adj[v][u] = 1; // 무방향에서는 양쪽 모두 표기
+	}
+}
+
+// 그래프가 조밀하다면 인접행렬 표현이 유용함. 행렬은 O(V^2)의 공간과 시간의 초기화가 필요
+
+//=========================
+
+// 무방향 인접 리스트 (vector를 이용)
+int node, edge;
+vector<int> List[100];
+
+void Non_DirectionalNeighborList()
+{
+	cin >> node >> edge;
+
+	for (int i = 0; i < edge; i++)
+	{
+		int a, b; cin >> a >> b;
+
+		List[a].push_back(b);
+		List[b].push_back(a); // 무방향 양쪽 모두
+	}
+
+}
+
+// 무방향 가중치 인접 리스트
+int Weighted;
+
+void Non_DirectionalWeightedNeighborList()
+{
+	cin >> node >> edge;
+
+	for (int i = 0; i < edge; i++)
+	{
+		int a, b, w; cin >> a >> b >> w; // 정점 2개와 가중치
+
+		List[a].push_back(b);
+		List[a].push_back(w);
+		List[b].push_back(a); // 무방향 양쪽 모두
+		List[b].push_back(w);
+
+	}
+
+}
+
+// pair 사용
+vector <pair<int, int>> ListPair[100];
+void Non_DirectionalWeightedNeighborListPair()
+{
+	cin >> node >> edge;
+
+	for (int i = 0; i < edge; i++)
+	{
+		int a, b, w; cin >> a >> b >> w; // 정점 2개와 가중치
+
+		pair<int, int> temp1;
+		temp1.first = a;
+		temp1.second = w;
+
+		pair<int, int> temp2;
+		temp1.first = b;
+		temp1.second = w;
+
+		ListPair->push_back(temp1);
+		ListPair->push_back(temp2);
+
+	}
+
+}
+
+// ==============================================
+
+/*
+방향그래프를 만들고 싶으면 양쪽다 넣지말고 한쪽만 넣으면 됨.
+
+*/
+
+int main()
+{
+	
+}
