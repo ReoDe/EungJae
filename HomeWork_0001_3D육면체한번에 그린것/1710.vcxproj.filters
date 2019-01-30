@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Systems\D3D.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\Keyboard.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\Mouse.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\Time.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Systems\Window.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\String.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\Xml.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\BinaryFile.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\Math.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities\Path.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Renders\Shader.cpp">
+      <Filter>Renders</Filter>
+    </ClCompile>
+    <ClCompile Include="Viewer\Viewport.cpp">
+      <Filter>Viewer</Filter>
+    </ClCompile>
+    <ClCompile Include="Viewer\Perspective.cpp">
+      <Filter>Viewer</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Program.cpp" />
+    <ClCompile Include="Executes\DrawTriangle.cpp">
+      <Filter>Executes</Filter>
+    </ClCompile>
+    <ClCompile Include="Executes\DrawRect.cpp">
+      <Filter>Executes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Systems\D3D.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Keyboard.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Mouse.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Time.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems\Window.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\String.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Xml.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\BinaryFile.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Math.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Path.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\VertexLayouts.h">
+      <Filter>Renders</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\GlobalBuffers.h">
+      <Filter>Renders</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\Shader.h">
+      <Filter>Renders</Filter>
+    </ClInclude>
+    <ClInclude Include="Renders\ShaderBuffer.h">
+      <Filter>Renders</Filter>
+    </ClInclude>
+    <ClInclude Include="Viewer\Perspective.h">
+      <Filter>Viewer</Filter>
+    </ClInclude>
+    <ClInclude Include="Viewer\Viewport.h">
+      <Filter>Viewer</Filter>
+    </ClInclude>
+    <ClInclude Include="Executes\Execute.h">
+      <Filter>Executes</Filter>
+    </ClInclude>
+    <ClInclude Include="Program.h" />
+    <ClInclude Include="Executes\DrawTriangle.h">
+      <Filter>Executes</Filter>
+    </ClInclude>
+    <ClInclude Include="Executes\DrawRect.h">
+      <Filter>Executes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Systems">
+      <UniqueIdentifier>{8b3ddb1d-ece4-47da-8238-2c815bc55eb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{49698b3e-b78f-4ff4-8954-b5fef681e98d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renders">
+      <UniqueIdentifier>{ad869a9f-a5bd-4416-b711-d510057e98d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Viewer">
+      <UniqueIdentifier>{cf8fa52a-9e64-4755-9656-43da0463d2b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Executes">
+      <UniqueIdentifier>{f483c4cc-915d-47e5-9eb2-41187fb539b0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

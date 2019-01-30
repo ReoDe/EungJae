@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Main.h" />
+    <ClInclude Include="Fbx\FbxType.h">
+      <Filter>Fbx</Filter>
+    </ClInclude>
+    <ClInclude Include="Fbx\FbxUtility.h">
+      <Filter>Fbx</Filter>
+    </ClInclude>
+    <ClInclude Include="Fbx\FbxLoader.h">
+      <Filter>Fbx</Filter>
+    </ClInclude>
+    <ClInclude Include="Executes\TestMutex.h">
+      <Filter>Executes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Fbx\FbxUtility.cpp">
+      <Filter>Fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="Fbx\FbxLoader.cpp">
+      <Filter>Fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="Executes\TestMutex.cpp">
+      <Filter>Executes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Fbx">
+      <UniqueIdentifier>{f08a9535-65c5-4e8c-b0a9-e958016681ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Executes">
+      <UniqueIdentifier>{23087b3f-169e-4ec8-8860-56dcbb1cfa7f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

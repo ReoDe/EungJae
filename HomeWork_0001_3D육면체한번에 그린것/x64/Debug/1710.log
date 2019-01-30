@@ -1,0 +1,35 @@
+﻿  DrawRect.cpp
+c:\users\kim eungjae\documents\카카오톡 받은 파일\sga_1810\001_homework_3d육면체한번에 그린것\executes\drawrect.cpp(1): fatal error C1083: 포함 파일을 열 수 없습니다. 'stdafx.h': No such file or directory
+  DrawTriangle.cpp
+c:\users\kim eungjae\documents\카카오톡 받은 파일\sga_1810\001_homework_3d육면체한번에 그린것\executes\drawtriangle.cpp(1): fatal error C1083: 포함 파일을 열 수 없습니다. 'stdafx.h': No such file or directory
+  Main.cpp
+c:\users\kim eungjae\documents\카카오톡 받은 파일\sga_1810\001_homework_3d육면체한번에 그린것\stdafx.h(22): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx10math.h': No such file or directory
+  Program.cpp
+c:\users\kim eungjae\documents\카카오톡 받은 파일\sga_1810\001_homework_3d육면체한번에 그린것\stdafx.h(22): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx10math.h': No such file or directory
+  Shader.cpp
+c:\users\kim eungjae\documents\카카오톡 받은 파일\sga_1810\001_homework_3d육면체한번에 그린것\renders\shader.cpp(1): fatal error C1083: 포함 파일을 열 수 없습니다. 'stdafx.h': No such file or directory
+  D3D.cpp
+c:\users\kim eungjae\documents\카카오톡 받은 파일\sga_1810\001_homework_3d육면체한번에 그린것\systems\d3d.cpp(1): fatal error C1083: 포함 파일을 열 수 없습니다. 'stdafx.h': No such file or directory
+  Keyboard.cpp
+c:\users\kim eungjae\documents\카카오톡 받은 파일\sga_1810\001_homework_3d육면체한번에 그린것\systems\keyboard.cpp(1): fatal error C1083: 포함 파일을 열 수 없습니다. 'stdafx.h': No such file or directory
+  Mouse.cpp
+c:\users\kim eungjae\documents\카카오톡 받은 파일\sga_1810\001_homework_3d육면체한번에 그린것\systems\mouse.cpp(1): fatal error C1083: 포함 파일을 열 수 없습니다. 'stdafx.h': No such file or directory
+  Time.cpp
+c:\users\kim eungjae\documents\카카오톡 받은 파일\sga_1810\001_homework_3d육면체한번에 그린것\systems\time.cpp(1): fatal error C1083: 포함 파일을 열 수 없습니다. 'stdafx.h': No such file or directory
+  Window.cpp
+c:\users\kim eungjae\documents\카카오톡 받은 파일\sga_1810\001_homework_3d육면체한번에 그린것\systems\window.cpp(1): fatal error C1083: 포함 파일을 열 수 없습니다. 'stdafx.h': No such file or directory
+  BinaryFile.cpp
+c:\users\kim eungjae\documents\카카오톡 받은 파일\sga_1810\001_homework_3d육면체한번에 그린것\utilities\binaryfile.cpp(1): fatal error C1083: 포함 파일을 열 수 없습니다. 'stdafx.h': No such file or directory
+  Math.cpp
+c:\users\kim eungjae\documents\카카오톡 받은 파일\sga_1810\001_homework_3d육면체한번에 그린것\utilities\math.cpp(1): fatal error C1083: 포함 파일을 열 수 없습니다. 'stdafx.h': No such file or directory
+  Path.cpp
+c:\users\kim eungjae\documents\카카오톡 받은 파일\sga_1810\001_homework_3d육면체한번에 그린것\stdafx.h(22): fatal error C1083: 포함 파일을 열 수 없습니다. 'd3dx10math.h': No such file or directory
+  String.cpp
+c:\users\kim eungjae\documents\카카오톡 받은 파일\sga_1810\001_homework_3d육면체한번에 그린것\utilities\string.cpp(1): fatal error C1083: 포함 파일을 열 수 없습니다. 'stdafx.h': No such file or directory
+  Xml.cpp
+c:\users\kim eungjae\documents\카카오톡 받은 파일\sga_1810\001_homework_3d육면체한번에 그린것\utilities\xml.cpp(2422): warning C4267: '인수': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  Perspective.cpp
+c:\users\kim eungjae\documents\카카오톡 받은 파일\sga_1810\001_homework_3d육면체한번에 그린것\viewer\perspective.cpp(1): fatal error C1083: 포함 파일을 열 수 없습니다. 'stdafx.h': No such file or directory
+  Viewport.cpp
+c:\users\kim eungjae\documents\카카오톡 받은 파일\sga_1810\001_homework_3d육면체한번에 그린것\viewer\viewport.cpp(1): fatal error C1083: 포함 파일을 열 수 없습니다. 'stdafx.h': No such file or directory
+  코드를 생성하고 있습니다...
