@@ -1,0 +1,33 @@
+#include <iostream> 
+using namespace std; 
+
+enum MENU
+{
+	ADD,
+	MINUS
+};
+
+inline int Add(int a, int b) { return a + b; }
+inline int Minus(int a, int b) { return a - b; }
+
+int main() 
+{
+	int n, a, b;
+
+	int(*func)(int, int) = 0; // 인자를 (int,int)를 받는 int형 함수포인터 func선언
+
+	cin >> n >> a >> b;
+
+	if (n == ADD) func = Add; // 함수포인터에 함수를 연결
+	if (n == MINUS) func = Minus;
+
+	cout << &func << endl;
+	cout << func(a, b) << endl;
+
+
+
+	system("pause");
+
+	return 0;
+}
+
