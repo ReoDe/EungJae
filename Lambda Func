@@ -1,0 +1,139 @@
+#include <iostream> 
+#include<vector>
+#include<algorithm>
+#include<functional>
+using namespace std; 
+
+
+template <typename T>
+void fill(vector<int>& v, T done)
+{
+	int i = 0;
+	while (!done()) {
+		v.push_back(i++);
+	}
+}
+
+int main() 
+{
+
+	
+	vector<int> cardinal;
+
+	//cardinal 벡터의 처음부터 끝까지 곱한값을 구하고싶으면?
+	auto iter = cardinal.begin();
+	vector<int>::const_iterator iter_end = cardinal.end();
+	int total_elements = 1;
+
+	while (iter != iter_end) 
+	{
+		total_elements *= *iter;
+		++iter;
+	}
+
+	// 람다함수로 쓴다면?
+
+	total_elements = 1;
+	for_each(cardinal.begin(), cardinal.end(), [&total_elements](int i) {total_elements *= i; });
+
+	// 람다의 구성
+
+	// [my_mod] (int v_) -> int {return v_ % my_mod;}
+	// 개시자,   인자,      반환타입, 함수의 몸통
+	/*
+	[]에는 외부변수를 써넣음, 람다가 이를 capture해서 이 변수를 람다 내부에서 이용가능
+	()람다가 실행시 받을 인자들을 써 넣음
+	-> 반환 타입
+	{} 몸통
+
+	*/
+	int my_mod = 0;
+	[my_mod](int v_) -> int { return v_ % my_mod; };
+
+
+	[](int v) { cout << v << "*6=" << v * 6 << endl; }(7);
+
+
+	// 인자를 레퍼런스로 받는것 가능
+	int i = 7;
+	[](int& v) { v *= 6; }(i);
+	cout << "the correct value is: " << i << endl;
+
+	/*
+	[&]() { . . . } 외부의 모든 변수들을 레퍼런스로 가져온다. (함수의 Call - by - reference 를 생각)
+
+	[=]() { . . . } 외부의 모든 변수들을 값으로 가져온다. (함수의 Call - by - value 를 생각)
+
+	[=, &x, &y] { . . . }, [&, x, y] { . . . } 외부의 모든 변수들을 값/레퍼런스로 가져오되, x 와 y 만 레퍼런스/값으로 가져온다
+
+	[x, &y, &z] { . . . } 지정한 변수들을 지정한 바에 따라 가져온다.
+	
+	*/
+
+	// 예제
+
+	total_elements = 1;
+
+	cardinal.push_back(1);
+	cardinal.push_back(2);
+	cardinal.push_back(4);
+	cardinal.push_back(8);
+
+	for_each(cardinal.begin(), cardinal.end(), [&](int i) { total_elements *= i; });
+
+	cout << "total elements : " << total_elements << endl;
+
+
+
+
+
+
+	vector<int> stuff;
+	fill(stuff, [&]() -> bool { return stuff.size() >= 8; });
+
+	for_each(stuff.begin(), stuff.end(), [](int i) { cout << i << " "; });
+
+
+
+	std::function<int(int)> f1;
+	std::function<int(int)> f2 = [&](int i) -> int {
+		cout << i << " ";
+
+		if (i > 5) 
+		{
+			return f1(i - 2);
+		}
+	};
+
+	f1 = [&](int i) -> int 
+	{
+		cout << i << " ";
+
+		return f2(++i);
+	};
+	f1(10);
+
+
+
+
+
+	std::function<int(int)> fact;
+	fact = [&fact](int n) -> int {
+		if (n == 0) {
+			return 1;
+		}
+		else {
+			return (n * fact(n - 1));
+		}
+	};
+	cout << "factorial(4) : " << fact(4) << endl;
+
+
+
+
+	system("pause");
+
+
+	return 0;
+}
+
