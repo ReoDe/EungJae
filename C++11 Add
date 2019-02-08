@@ -1,0 +1,184 @@
+#include <iostream> 
+#include <string>
+#include <vector>
+#include <functional>
+#include <memory>
+#include <array>
+#include <chrono>
+#include <thread>
+#include <mutex>
+using namespace std; 
+
+class ITEM
+{
+
+public:
+	int nID = 0;
+};
+
+int main() 
+{
+	
+	/*
+	C++11 에서 추가된 기능들
+	*/
+	
+	// 1. auto 타입 지원
+
+	auto AAA = "AAA";
+	auto BBB = 1;
+
+	cout << AAA << endl; // const char* 형식
+	cout << BBB << endl; // int 형식
+
+	// 2. 이름없는 함수
+	// 함수 객체가 들어가야할 자리에, 대신에 간단히 함수 자체를 직접 구현가능
+	// 함수 포인터처럼 사용도 가능, STL함수 객체 대신에 아주 유용하다.
+
+	/*
+	람다 함수
+	[] // lambda capture
+	() // 함수의 인수 정의
+	{} // 함수의 본체
+	*/
+
+	auto func = [] {cout << "Hellow" << endl; };
+
+	func();	// main::__l2::void <람다>(void) 형식
+
+	auto func2 = [] (int n ){cout << "Hellow : " << n << endl; };
+
+	func2(1);	
+	func2(100);
+
+	func2(NULL);
+
+	// 3. tulpe
+	// 2개의 서로다른 데이터 타입을 하나로 묶을 수 있다.
+	// 2개 이상의 리턴값이 필요하는 곳 등에서 활용
+
+	ITEM item;
+
+	tuple<int, string, ITEM> UserItem = tuple<int, string, ITEM>(1, "jacking", item);
+
+	cout << get<0>(UserItem) << endl;
+	cout << get<1>(UserItem) << endl;
+	cout << get<2>(UserItem).nID << endl;
+
+	get<0>(UserItem) = 2;
+	get<1>(UserItem) = "jacking75";
+	get<2>(UserItem).nID = 10002;
+
+	cout << get<0>(UserItem) << endl;
+	cout << get<1>(UserItem) << endl;
+	cout << get<2>(UserItem).nID << endl;
+
+	// 참조데이터를 저장하는 튜플
+	int nUserIndex = 11;
+	string UserName = "jack";
+
+	auto refUserItem = tie(nUserIndex, UserName);
+
+	// 튜플에 저장된 데이터를 일관적으로 변수에 담기
+	tuple<int, string> ABC(1002, "user");
+
+	int index = 0;
+	string name;
+
+	tie(index, name) = ABC;
+
+	// 2개의 튜플을 하나로 합치기
+
+	tuple<int, string> tuple1(1001, "tuple1");
+	tuple<int, int> tuple2(12, 3);
+
+	auto UserGameResult = tuple_cat(tuple1, tuple2);
+
+	cout << get<0>(UserGameResult) << endl;
+	cout << get<1>(UserGameResult) << endl;
+	cout << get<2>(UserGameResult) << endl;
+	cout << get<3>(UserGameResult) << endl;
+
+	// 4. array
+	// 일반 고정 배열타입
+	// Vector<>는 동적 배열타입인데 반해, 일반배열
+
+	array<int, 5> arr1; // int형 5개까지 가능
+
+	for (int i = 0; i < 5; i++)
+	{
+		arr1[i] = i + 1;
+	}
+
+	array<ITEM, 5> arr2;
+
+	// 5. Unorderd_map
+	// 정렬되지 않은 Map, Hash_map과 같은 구조
+
+
+	// 6. chrono 처정밀 타임 객체
+	chrono::system_clock::time_point start = chrono::system_clock::now();
+
+	func2(150);
+
+	chrono::duration<double> sec = chrono::system_clock::now() - start;
+
+	cout << "func2(150) 함수를 수행하는데 걸린 시간(초) : " << sec.count()
+		<< " seconds" << endl;
+
+
+
+	// 7. 멀티 스레드 라이브러리
+	thread Thread1([]()
+	{
+		for (int i = 0; i < 5; i++)
+		{
+			cout << "Thread1 Num : " << i << endl;
+		}
+
+	});
+
+	thread Thread2([]()
+	{
+		for (int i = 5; i < 10; i++)
+		{
+			cout << "Thread2 Num : " << i << endl;
+		}
+
+	});
+
+	thread Thread3([](int nParam)
+	{
+		for (int i = 20; i < 25; i++)
+		{
+			cout << "Thread3 Parameter : " << nParam << endl;
+		}
+
+	}, 4);
+
+	Thread1.join();
+	Thread2.join();
+	Thread3.join();
+
+	// 2개의 스레드가 서로 스왑하여 교환
+	Thread1.swap(Thread2);
+
+	// 스레드 객체를 떼어낸다.
+	// 이제 Thread는 스레드를 관리하지 않는다.
+	// 돌아가는 스레드는 알아서 완료 후 종료.
+	Thread1.detach();
+
+	// 8. Mutex 동기화 객체
+
+	mutex mtx_lock;
+
+	// 9. async/future ....나중에
+
+
+
+	system("pause");
+
+
+	return 0;
+}
+
