@@ -1,0 +1,202 @@
+#include <iostream>
+
+using namespace std;
+
+// 리시버
+class GameActor
+{
+public:
+	GameActor() {}
+	~GameActor() {}
+public:
+	void jump()
+	{
+		cout << "jump" << endl;
+	}
+	void fireGun()
+	{
+		cout << "fireGun" << endl;
+	}
+	void Sliding()
+	{
+		cout << "Sliding" << endl;
+	}
+	void Run()
+	{
+		cout << "Run" << endl;
+	}
+};
+
+
+class Command
+{
+public:
+	virtual ~Command() {}
+	virtual void execute(GameActor& actor) = 0;
+};
+
+class JumpCommand :public Command
+{
+public:
+	virtual ~JumpCommand() { cout << "삭제" << endl; }
+public:
+	virtual void execute(GameActor& actor)
+	{
+		actor.jump();
+	}
+};
+
+class FireCommand : public Command
+{
+public:
+	virtual ~FireCommand() {}
+public:
+	virtual void execute(GameActor& actor)
+	{
+		actor.fireGun();
+	}
+};
+
+class SlidingCommand : public Command
+{
+public:
+	virtual ~SlidingCommand() {}
+public:
+	virtual void execute(GameActor& actor)
+	{
+		actor.Sliding();
+	}
+};
+
+class RunCommand : public Command
+{
+public:
+	virtual ~RunCommand() {}
+public:
+	virtual void execute(GameActor& actor)
+	{
+		actor.Run();
+	}
+};
+
+// 인보커
+class InputHandler
+{
+public:
+	InputHandler()
+	{
+		button_X = new JumpCommand();
+		button_Y = new FireCommand();
+		button_A = new SlidingCommand();
+		button_B = new RunCommand();
+	}
+
+	Command* handleInput();
+	// 명령을 바인드(bind)할 메서드들
+
+	void SetCommand(int state)
+	{
+
+		// 여기서 삭제하는 부분 필요
+
+		delete button_X;
+		delete button_Y;
+		delete button_A;
+		delete button_B;
+
+		switch (state)
+		{
+		case 0:
+		{
+			button_X = new JumpCommand();
+			button_Y = new FireCommand();
+			button_A = new SlidingCommand();
+			button_B = new RunCommand();
+		}
+		break;
+		case 1:
+		{
+			button_X = new FireCommand();
+			button_Y = new SlidingCommand();
+			button_A = new RunCommand();
+			button_B = new JumpCommand();
+		}
+		break;
+		default:
+			break;
+		}
+	}
+private:
+	
+	int state;
+
+	Command * button_X;
+	Command * button_Y;
+	Command * button_A;
+	Command * button_B;
+};
+
+
+Command* InputHandler::handleInput()
+{
+	char button = NULL;
+	cout << "XYAB 사이의 문자를 입력해주세요 : ";
+	cin >> button;
+
+	if (button == 'X' || button == 'x') return button_X;
+	else if (button == 'Y' || button == 'y')  return button_Y;
+	else if (button == 'A' || button == 'a') return button_A;
+	else if (button == 'B' || button == 'b')  return button_B;
+
+	//아무것도 안했다면
+	return NULL;
+}
+// 함수를 직접호출하는 것이 아니라 명령클래스를 거쳐서 메서드를 부른다.
+
+void main()
+{
+	GameActor actor;
+
+	InputHandler inputHandler;
+
+	//명령을 받을 객체 (의 상태까지 지정하면)
+	Command* command = inputHandler.handleInput();
+
+	// 만약 1을 누르면 button_1 이름을 가진 Command* 객체를 가져옴
+
+	while (true)
+	{
+		if (command)
+		{
+			command->execute(actor);
+		}
+
+
+		// 상태패턴으로 이 캐릭터가 서있는상태, 앉아있는상태 라면 각각 다른쪽으로
+
+		command = inputHandler.handleInput(); // 입력받는 함수
+	}
+
+
+	/*
+
+	명령과 액터(player)사이에 추상계층을 한단계 더 둔 덕분에, 소소한 기능이 추가되었다.
+	명령을 실행 할 때 액터만 바꾸면 플레이어가 게임에 있는 어떤 액터(player)를 제어할 수 있다.
+
+	그라나도 에스파다 같은경우 3캐릭을 번갈아가면서 조종, 이런경우 쓸수 있을듯.
+	아니면 파이널 판타지 13같은경우 3캐릭터를 같이 움직이는데 주로 조종하는것을 스위칭해가면서 조종가능.
+
+	AI를 만들어서 AI가 Command객체를 수행할 수도 있음.
+
+
+	명령커멘드를 queue로 만들게 되면 선입력 후 행동이 가능하다.
+	- 격투게임같은데서 선입력을 해도 실행되는것의 이치
+	- 그리고 큐에 넣어놓으면 실행취소도 쉽다.
+
+	page.49
+
+	*/
+
+	system("pause");
+
+}
